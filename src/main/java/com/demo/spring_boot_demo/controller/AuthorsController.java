@@ -27,11 +27,12 @@ public class AuthorsController {
         List<Author> authors = new ArrayList<>();
         try {
             authors = authorRepository.findAll();
+            return authors;
         } catch (Exception e) {
             log.error("Error while fetching all authors", e.getMessage());
-            return null;
+            throw e;
         }
-        return authors;
+      
     }
 
     @RequestMapping("/{id}/books")
@@ -47,11 +48,12 @@ public class AuthorsController {
             if (author != null) {
                 books = author.getBooks();
             }
+           return books;
         } catch (Exception e) {
             log.error("Error while fetching books by author id", e.getMessage());
-            return null;
+            throw e;
         }
-        return books;
+  
     }
 
 }

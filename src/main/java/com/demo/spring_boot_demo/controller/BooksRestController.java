@@ -26,11 +26,11 @@ public class BooksRestController {
         try {
             log.info("Fetching all books...Started");
             books = bookRepository.findAll();
+            return books;
         } catch (Exception e) {
             log.error("Error while fetching all books", e.getMessage());
-            return null;
+            throw e;
         }
-        return books;
     }
 
 }
